@@ -1,7 +1,9 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
+import {useDispatch } from 'react-redux';
+import { addItem } from './CreatSlice';
 function ProductList() {
-  
+    const dispatch = useDispatch()
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -229,6 +231,15 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
+   
+   const [AddedToCart, setAddedToCart] = useState({})
+   const handleAddToCart=(product)=>{
+      dispatch(addItem(product));
+      setAddedToCart((prev)=>({...prev,[product.name]:true}))
+   }
+   
+
+
     return (
         <div>
              <div className="navbar" style={styleObj}>
@@ -261,7 +272,7 @@ function ProductList() {
                                 <div className='product-title'>{plant.name}</div>
                                 <p>{plant.description}</p>
                                 <div className='product-cost'>{plant.cost}</div>
-                                <button className='product-button'>Add To Cart</button>
+                                <button className='product-button' onClick={()=>handleAddToCart(plant)}>Add To Cart</button>
                             </div>
                         ))}
                     </div>
