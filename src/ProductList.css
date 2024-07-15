@@ -12,6 +12,7 @@ body {
 
 /* Navbar */
 .navbar {
+    height: 15vh;
     background-color: #4CAF50;
     color: #fff!important;
     padding: 15px;
@@ -127,6 +128,29 @@ body {
     padding: 5px 10px;
     border-radius: 0 0 0 5px;
 }
+
+
+.cart-list-container {
+    position: absolute;
+    overflow-x: hidden;
+    top: 15vh;
+    /* Initially off-screen */
+    right: 0;
+    width: 30%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Adjust background opacity as needed */
+    transition: top 0.5s ease;
+    /* Smooth transition for top property */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    z-index: 2;
+    /* Ensure it's above landing page content */
+    backdrop-filter: blur(5px);
+    padding-inline: 20px;
+  }
+
+
 .tag_home_link{
     display: flex;
     /* background-color: red; */

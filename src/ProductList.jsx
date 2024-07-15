@@ -252,7 +252,7 @@ function ProductList() {
 
    
 
-   const [showCart, setShowCart] = useState(false);
+   const [showCart, setShowCart] = useState(true);
    const handlecart=()=>{
         setShowCart(!showCart);
    }
@@ -301,9 +301,9 @@ function ProductList() {
             ))}
 
         </div>
-        <div>
-        <CartItem/>
-        </div>
+        <div className={`cart-list-container ${showCart ? 'visible' : ''}`}>
+        <CartItem />
+      </div>
       
 
     </div>
