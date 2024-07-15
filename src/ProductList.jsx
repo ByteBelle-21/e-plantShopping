@@ -233,9 +233,11 @@ function ProductList() {
     textDecoration: 'none',
    }
    
+   const[incart, setInCart] = useState(false)
    const [AddedToCart, setAddedToCart] = useState({})
    const handleAddToCart=(product)=>{
       dispatch(addItem(product));
+      setInCart(true);
       setAddedToCart((prev)=>({...prev,[product.name]:true}))
    }
    const cart = useSelector(state => state.cart.items);
