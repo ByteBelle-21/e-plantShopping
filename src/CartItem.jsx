@@ -21,7 +21,7 @@ const CartItem = ({ onContinueShopping }) =>{
        return onContinueShopping();
   };
 
-  const [itemCount, setItemCount] = useState(1);
+ 
   const handleIncrement = (item) => {
     let quantity = item.quantity+1;
     let name = item.name;

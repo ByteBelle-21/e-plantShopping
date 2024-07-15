@@ -241,10 +241,13 @@ function ProductList() {
       setAddedToCart((prev)=>({...prev,[product.name]:true}))
    }
    const cart = useSelector(state => state.cart.items);
-   const[ItemCount, setItemCount] = useState(cart.length);
+   const[ItemCount, setItemCount] = useState(0);
    useEffect(()=>{
-    console.log(cart)
-    setItemCount(cart.length);
+    let count = 0;
+    cart.forEach((item)=>(
+        count += item.quantity
+    ))
+    setItemCount(count);
    },[cart]);
 
    
