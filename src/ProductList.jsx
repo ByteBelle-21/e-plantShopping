@@ -260,7 +260,7 @@ function ProductList() {
         setShowCart(!showCart);
    }
    
-
+   const keys = Object.keys(AddedToCart);
 
     return (
         <div>
@@ -296,8 +296,8 @@ function ProductList() {
                                 <div className='product-title'>{plant.name}</div>
                                 <p>{plant.description}</p>
                                 <div className='product-cost'>{plant.cost}</div>
-                                <button className='product-button' onClick={()=>handleAddToCart(plant)}>
-                                {Object.keys(AddedToCart).includes(plant.name) ? 'Added To Cart': 'Add To Cart'}
+                                <button className={`product-button ${keys.includes(plant.name) ?'added-to-cart':''}`} onClick={()=>handleAddToCart(plant)} >
+                                {keys.includes(plant.name) ? 'Added To Cart': 'Add To Cart'}
                                 </button>
                             </div>
                         ))}
