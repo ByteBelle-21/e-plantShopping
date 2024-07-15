@@ -23,25 +23,24 @@ const CartItem = ({ onContinueShopping }) =>{
 
   const [itemCount, setItemCount] = useState(1);
   const handleIncrement = (item) => {
-    item.quantity++;
-    let quantity = item.quantity;
+    let quantity = item.quantity+1;
     let name = item.name;
     dispatch(updateQuantity({name,quantity}));
-    console.log(item.quantity);
   };
 
   const handleDecrement = (item) => {
+    let name = item.name;
     if(item.quantity===1){
-        dispatch(removeItem(item));
+        dispatch(removeItem(name));
     }else{
-        item.quantity--;
-        let quantity = item.quantity;
-        dispatch(updateQuantity({item,quantity}))
+        let quantity = item.quantity-1;
+        dispatch(updateQuantity({name,quantity}))
     } 
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item));
+    let name = item.name;
+    dispatch(removeItem(name));
   };
 
   const handleCheckoutShopping = (e) => {
@@ -66,7 +65,7 @@ const CartItem = ({ onContinueShopping }) =>{
               <div className="cart-item-cost">{item.cost}</div>
               <div className="cart-item-quantity">
                 <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
-                <span className="cart-item-quantity-value">{itemCount}</span>
+                <span className="cart-item-quantity-value">{item.quantity}</span>
                 <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
               </div>
               <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
