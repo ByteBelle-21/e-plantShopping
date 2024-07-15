@@ -233,12 +233,15 @@ function ProductList() {
     textDecoration: 'none',
    }
    
-   const[incart, setInCart] = useState(false)
+   
    const [AddedToCart, setAddedToCart] = useState({})
    const handleAddToCart=(product)=>{
+      if(Object.keys(AddedToCart).includes(product.name)){
+        alert('Product already in the Cart')
+      }else{
       dispatch(addItem(product));
-      setInCart(true);
       setAddedToCart((prev)=>({...prev,[product.name]:true}))
+      }
    }
    const cart = useSelector(state => state.cart.items);
    const[ItemCount, setItemCount] = useState(0);
@@ -293,7 +296,9 @@ function ProductList() {
                                 <div className='product-title'>{plant.name}</div>
                                 <p>{plant.description}</p>
                                 <div className='product-cost'>{plant.cost}</div>
-                                <button className='product-button' onClick={()=>handleAddToCart(plant)}>Add To Cart</button>
+                                <button className='product-button' onClick={()=>handleAddToCart(plant)}>
+                                {Object.keys(AddedToCart).includes(plant.name) ? 'Added To Cart': 'Add To Cart'}
+                                </button>
                             </div>
                         ))}
                     </div>
